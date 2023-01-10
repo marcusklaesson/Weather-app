@@ -1,0 +1,19 @@
+{
+  "name": "react-native-fullstack-code-challenge",
+  "version": "1.0.0",
+  "author": "hejalbert",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "prettier": "prettier --write '**/*.{ts,tsx,js,json}'"
+  },
+  "devDependencies": {
+    "prettier": "2.7.1",
+    "typescript": "4.9.3"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}
