@@ -2,8 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/home';
 import WeatherInfoScreen from '../screens/weatherInfo';
+import { HomeStackNavigatorParamList } from './types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
 const Navigation = () => {
   return (

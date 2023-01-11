@@ -5,9 +5,12 @@ import { weatherApiService } from '../../services/weatherApi';
 import Loader from '../../components/loader';
 import { WeatherGetAllResponseDto } from '@albert/shared/entities/dto';
 import WeatherItem from '../../components/weatherItem';
+import { useNavigation } from '@react-navigation/native';
+import { HomeScreenNavigationProp } from '../../navigation/types';
 
 const HomeScreen: React.FC = () => {
   const [data, setData] = useState<WeatherGetAllResponseDto>();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
 
   useFocusEffect(
     useCallback(() => {
@@ -30,7 +33,7 @@ const HomeScreen: React.FC = () => {
   );
 
   const onWeatherItemClick = (item: WeatherGetAllResponseDto[0]) => () => {
-    return;
+    navigation.navigate('WeatherInfo', item);
   };
 
   if (!data) {

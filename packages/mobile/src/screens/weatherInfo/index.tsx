@@ -1,14 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { WeatherInfoScreenRouteProp } from '../../navigation/types';
 
 const WeatherInfoScreen = () => {
+  const route = useRoute<WeatherInfoScreenRouteProp>();
+  const { city, country } = route.params;
+
   const renderMonthlyData = () => {
     return null;
   };
 
   return (
     <View style={styles.root}>
-      <Text style={styles.cityText}>City text from last view</Text>
-      <Text style={styles.countryText}>Country text from last view</Text>
+      <Text style={styles.cityText}>{city}</Text>
+      <Text style={styles.countryText}>{country}</Text>
       {renderMonthlyData()}
     </View>
   );
