@@ -15,5 +15,9 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "dependencies": {
+    "react-native": "^0.70.6",
+    "yarn": "^1.22.19"
   }
 }
