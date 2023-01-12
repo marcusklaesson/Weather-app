@@ -18,7 +18,6 @@ const HomeScreen: React.FC = () => {
 
       (async () => {
         const weatherData = await weatherApiService.get();
-
         if (mounted) {
           setData(weatherData);
         }

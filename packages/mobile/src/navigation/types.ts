@@ -6,6 +6,7 @@ export type HomeStackNavigatorParamList = {
   WeatherInfo: {
     city: string;
     country: string;
+    id: number;
   };
 };
 
