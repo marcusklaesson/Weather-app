@@ -32,7 +32,7 @@ const WeatherDetailItem: React.FC<Props> = ({ data }) => {
             </Text>
             <View style={styles.detailContainer}>
               <Text>Info:</Text>
-              <Text>
+              <Text style={styles.detailText}>
                 High: {value.high} | Low: {value.low} | Dry: {value.dryDays} |
                 Rain: {value.rainfall} | Snow: {value.snowDays}
               </Text>
@@ -59,5 +59,9 @@ const styles = StyleSheet.create({
   detailContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  detailText: {
+    flex: 1,
+    marginStart: 10,
   },
 });
