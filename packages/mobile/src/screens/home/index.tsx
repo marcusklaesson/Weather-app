@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList } from 'react-native';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { weatherApiService } from '../../services/weatherApi';
 import Loader from '../../components/loader';
@@ -7,10 +7,12 @@ import { WeatherGetAllResponseDto } from '@albert/shared/entities/dto';
 import WeatherItem from '../../components/weatherItem';
 import { useNavigation } from '@react-navigation/native';
 import { HomeScreenNavigationProp } from '../../navigation/types';
+import { DataContext } from '../../context/dataContext';
 
 const HomeScreen: React.FC = () => {
-  const [data, setData] = useState<WeatherGetAllResponseDto>();
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const [data, setData] = useState<WeatherGetAllResponseDto>();
+  const { locationBackup, setLocationBackup } = useContext(DataContext);
 
   useFocusEffect(
     useCallback(() => {
@@ -32,10 +34,11 @@ const HomeScreen: React.FC = () => {
   );
 
   const onWeatherItemClick = (item: WeatherGetAllResponseDto[0]) => () => {
+    setLocationBackup(data ? data : locationBackup);
     navigation.navigate('WeatherInfo', item);
   };
 
-  if (!data) {
+  if (!data && !locationBackup) {
     return (
       <View style={styles.loadingView}>
         <Loader />
@@ -45,8 +48,9 @@ const HomeScreen: React.FC = () => {
 
   return (
     <FlatList
-      data={data}
+      data={data ? data : locationBackup}
       style={styles.list}
+      initialNumToRender={10}
       renderItem={({ item }) => (
         <WeatherItem
           key={item.id}
